@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                                            xmlns:tools="http://schemas.android.com/tools"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent">
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="vertical" android:background="@color/a">
+        <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="101dp"
+                android:background="@drawable/for_settings">
+            <TextView
+                    android:text="Settings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textView34" android:textSize="20sp"
+                    android:textStyle="bold" android:textColor="@color/white" app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5" app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="50dp"/>
+            <Button
+                    android:layout_height="16dp" android:id="@+id/back_from_settings_to_account" android:layout_width="16dp"
+                    android:background="@drawable/left_back" app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="50dp" app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginLeft="20dp" android:layout_marginStart="20dp"/>
+        </android.support.constraint.ConstraintLayout>
+        <TextView
+                android:text="Account Info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView35" android:textSize="15sp"
+                android:textColor="@color/Black"
+                android:textStyle="bold" android:layout_marginTop="21dp"
+                android:layout_marginLeft="10dp"/>
+
+
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:layout_marginTop="11dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp">
+
+            <TextView
+                    android:id="@+id/to_change_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_settings_password"
+                    android:drawableEnd="@drawable/ic_go_to_profile"
+                    android:text="Change Password"
+                    android:textSize="16sp"
+                    android:gravity="center_vertical"
+                    android:drawablePadding="22dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"/>
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_ic"
+                    android:drawableEnd="@drawable/ic_go_to_profile"
+                    android:text="Change Info"
+                    android:textSize="16sp"
+                    android:gravity="center_vertical"
+                    android:drawablePadding="21dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"/>
+
+        </LinearLayout>
+
+
+
+        <TextView
+                android:text="General"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/accountInfo"
+                android:layout_marginTop="22dp"
+                android:textColor="@color/Black"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_marginLeft="10dp"/>
+
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:layout_marginTop="11dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp">
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_settings_language"
+                    android:drawableEnd="@drawable/ic_go_to_profile"
+                    android:text="Choose Language"
+                    android:textSize="16sp"
+                    android:gravity="center_vertical"
+                    android:drawablePadding="22dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"/>
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_settings_friends"
+                    android:drawableEnd="@drawable/ic_go_to_profile"
+                    android:text="Invite Friends"
+                    android:textSize="16sp"
+                    android:gravity="center_vertical"
+                    android:drawablePadding="19dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"/>
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_settings_notification"
+                    android:drawableEnd="@drawable/ic_go_to_profile"
+                    android:text="Notification"
+                    android:textSize="16sp"
+                    android:gravity="center_vertical"
+                    android:drawablePadding="23dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"/>
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_settings_support"
+                    android:drawableEnd="@drawable/ic_go_to_profile"
+                    android:text="Help &amp; Support"
+                    android:textSize="16sp"
+                    android:gravity="center_vertical"
+                    android:drawablePadding="21dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"/>
+
+        </LinearLayout>
+
+
+        <TextView
+                android:text="About"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/general"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/Black"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_marginLeft="10dp"/>
+
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:layout_marginTop="11dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp">
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_settings_update"
+                    android:drawableEnd="@drawable/ic_go_to_profile"
+                    android:text="Check For Updates"
+                    android:textSize="16sp"
+                    android:gravity="center_vertical"
+                    android:drawablePadding="21dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"/>
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_settings_feedback"
+                    android:drawableEnd="@drawable/ic_go_to_profile"
+                    android:text="Send Feedback"
+                    android:textSize="16sp"
+                    android:gravity="center_vertical"
+                    android:drawablePadding="21dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"/>
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_settings_about"
+                    android:drawableEnd="@drawable/ic_go_to_profile"
+                    android:text="About Us"
+                    android:textSize="16sp"
+                    android:gravity="center_vertical"
+                    android:drawablePadding="22dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"/>
+
+        </LinearLayout>
+
+        <TextView
+                android:text="Hasad v 2.001"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView37"
+                android:textColor="@color/grayText"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="77dp"/>
+
+    </LinearLayout >
+</ScrollView>

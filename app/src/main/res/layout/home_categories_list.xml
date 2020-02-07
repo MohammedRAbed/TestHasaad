@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+    <android.support.v7.widget.CardView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/white"
+            android:id="@+id/category_home"
+    >
+
+        <android.support.constraint.ConstraintLayout android:layout_width="wrap_content"
+                                                     android:layout_height="wrap_content"
+                                                     android:layout_marginStart="20dp"
+                                                     android:background="@drawable/for_home_categories"
+        >
+
+            <ImageView
+                    android:id="@+id/image_for_home_categories"
+                    android:layout_width="185dp"
+                    android:layout_height="242dp"
+                    android:background="@color/yellow"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+            <TextView
+                    android:text="Fish Foods"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/name_for_home_categories"
+                    android:textColor="@color/white"
+                    android:textSize="22sp" android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@+id/more_home_items" android:layout_marginStart="18dp"
+                    app:layout_constraintStart_toStartOf="@+id/image_for_home_categories"/>
+            <TextView
+                    android:text="more than "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textView46" android:textSize="12sp"
+                    android:textColor="@color/white"
+                    android:layout_marginStart="18dp"
+                    app:layout_constraintStart_toStartOf="@+id/image_for_home_categories"
+                    android:layout_marginBottom="6dp"
+                    app:layout_constraintBottom_toTopOf="@+id/textView48"/>
+            <TextView
+                    android:text="200"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/more_home_items" android:textSize="12sp"
+                    android:textColor="@color/white"
+                    app:layout_constraintStart_toEndOf="@+id/textView46"
+                    android:layout_marginBottom="6dp" app:layout_constraintBottom_toTopOf="@+id/textView48"/>
+            <TextView
+                    android:text=" items"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textView426" android:textSize="12sp"
+                    android:textColor="@color/white"
+                    app:layout_constraintStart_toEndOf="@+id/more_home_items"
+                    android:layout_marginBottom="6dp" app:layout_constraintBottom_toTopOf="@+id/textView48"/>
+            <TextView
+                    android:text="Starts From "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textView48" android:textSize="13sp"
+                    android:textColor="@color/white"
+                    android:layout_marginBottom="15dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/image_for_home_categories"
+                    android:layout_marginStart="18dp"
+                    app:layout_constraintStart_toStartOf="@+id/image_for_home_categories"/>
+            <TextView
+                    android:text="15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/price_home_items" android:textSize="13sp"
+                    android:textColor="@color/white"
+                    app:layout_constraintStart_toEndOf="@+id/textView48"
+                    android:layout_marginBottom="15dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/image_for_home_categories"/>
+            <TextView
+                    android:text=" SR"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textView548" android:textSize="13sp"
+                    android:textColor="@color/white"
+                    app:layout_constraintStart_toEndOf="@+id/price_home_items"
+                    android:layout_marginBottom="15dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/image_for_home_categories"/>
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.CardView>
+

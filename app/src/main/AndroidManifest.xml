@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.example.hasproject">
+
+    <application
+            android:allowBackup="true"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:supportsRtl="true"
+            android:theme="@style/AppTheme">
+        <activity android:name=".ThirdCheck">
+        </activity>
+        <activity android:name=".SecondCheck">
+        </activity>
+        <activity android:name=".Check">
+        </activity>
+        <activity android:name=".OrderNote">
+        </activity>
+        <activity android:name=".AdToCartDialog">
+        </activity>
+        <activity android:name=".MainHome">
+        </activity>
+        <activity android:name=".ChangeInfo">
+        </activity>
+        <activity android:name=".MyPoints">
+        </activity>
+        <activity android:name=".Settings">
+        </activity>
+        <activity android:name=".OrderDetails">
+        </activity>
+        <activity android:name=".Cart">
+        </activity>
+        <activity android:name=".ProductDetails">
+        </activity>
+        <activity android:name=".Categories">
+        </activity>
+        <activity android:name=".SecondForgetPassword">
+        </activity>
+        <activity android:name=".FirstForgetPassword">
+        </activity>
+        <activity android:name=".FinishSignUp">
+        </activity>
+        <activity android:name=".ThirdSignUp">
+        </activity>
+        <activity android:name=".SecondSignUp">
+        </activity>
+        <activity android:name=".FirstSignUp">
+        </activity>
+        <activity android:name=".SignInActivity">
+        </activity>
+        <activity android:name=".OnBoardingActivity">
+        </activity>
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
