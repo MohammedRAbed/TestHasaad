@@ -23,6 +23,9 @@ class AdToCartDialog : AppCompatActivity() {
             editor.putString("MANY",many)
             editor.apply()
 
+
+
+
 */
 
 
