@@ -43,9 +43,19 @@ class ProductDetails : AppCompatActivity() {
             finish()
         }
 
-
+        val sharedPreferences2 = getSharedPreferences("SP_Info", Context.MODE_PRIVATE)
 
         add_to_cart_btn.setOnClickListener {
+
+
+            val price =  p_price.text.toString().trim()
+            val p_name = product_name.text.toString().trim()
+            val editor = sharedPreferences2.edit()
+            editor.putString("NAME",p_name)
+            editor.putString("PRICE",price)
+            editor.apply()
+
+
 
             var firstDialogView = LayoutInflater.from(this).inflate(R.layout.activity_ad_to_cart_dialog,null)
             var firstBuilder = AlertDialog.Builder(this)
@@ -59,9 +69,11 @@ class ProductDetails : AppCompatActivity() {
             firstDialogView.confirm_add_cart.setOnClickListener {
 
 
-                val many = firstDialogView.et_many.text.toString().trim()
+                val many = Integer.parseInt(firstDialogView.et_many.text.toString().trim())
+                val des = firstDialogView.et_des.text.toString().trim()
                 val editor = sharedPreferences.edit()
-                editor.putString("MANY",many)
+                editor.putInt("MANY",many)
+                editor.putString("DES",des)
                 editor.apply()
 
                 val intentForGetCartt = Intent(this,Cart::class.java)

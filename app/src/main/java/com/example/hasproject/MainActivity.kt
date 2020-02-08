@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
         handler.postDelayed( object:Runnable {
 
-            public override fun run() {
+             override fun run() {
 
                 val intent = Intent(baseContext, OnBoardingActivity::class.java)
                 startActivity(intent)

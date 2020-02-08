@@ -84,14 +84,9 @@ class Cart : AppCompatActivity() {
 
 
     class CoustumAdapterForCart(val cartt_list :ArrayList<CartClass>,var context: Context):RecyclerView.Adapter<CoustumAdapterForCart.myCartHolder>(){
-/*
-        val sharedPreferences = getSharedPreferences("SP_Info", Context.MODE_PRIVATE)
 
-        val many = sharedPreferences.getString("MANY","")
-        many_x_items_cart.text = "$many"
 
-*/
-        override fun onCreateViewHolder(p0: ViewGroup, p1: Int): myCartHolder {
+       override fun onCreateViewHolder(p0: ViewGroup, p1: Int): myCartHolder {
             var z = LayoutInflater.from(p0?.context).inflate(R.layout.cart_list,p0,false)
             return myCartHolder(z)
         }
@@ -109,7 +104,7 @@ class Cart : AppCompatActivity() {
             var theNameOfCart:TextView
             var theManyOfCart :TextView
             var thePriceOfCart :TextView
-            var theWeightOfCart :TextView
+            var theDescriptionOfCart :TextView
 
 
             init {
@@ -117,13 +112,21 @@ class Cart : AppCompatActivity() {
                  theNameOfCart = itemView.findViewById(R.id.name_cart) as TextView
                  theManyOfCart = itemView.findViewById(R.id.many_x_items_cart) as TextView
                  thePriceOfCart = itemView.findViewById(R.id.price_cart) as TextView
-                 theWeightOfCart = itemView.findViewById(R.id.description_cart) as TextView
+                theDescriptionOfCart = itemView.findViewById(R.id.description_cart) as TextView
 
                 val sharedPreferences = context.getSharedPreferences("SP_Info", Context.MODE_PRIVATE)
 
-                val many = sharedPreferences.getString("MANY","1")
+                val many = sharedPreferences.getInt("MANY",1)
+                val des =sharedPreferences.getString("DES","no extra description")
                 theManyOfCart.text = "$many"
+                theDescriptionOfCart.text = "$des"
 
+
+                val sharedPreferences2 = context.getSharedPreferences("SP_Info", Context.MODE_PRIVATE)
+                val p_name = sharedPreferences2.getString("NAME","")
+                val price =sharedPreferences2.getString("PRICE","")
+                theNameOfCart.text = "$p_name"
+                thePriceOfCart.text = "$price"
             }
         }
 

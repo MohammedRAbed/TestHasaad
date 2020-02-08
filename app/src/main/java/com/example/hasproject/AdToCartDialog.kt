@@ -15,19 +15,6 @@ class AdToCartDialog : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ad_to_cart_dialog)
 
-/*
-            val sharedPreferences = getSharedPreferences("SP_Info", Context.MODE_PRIVATE)
-
-            val many = et_many.text.toString().trim()
-            val editor = sharedPreferences.edit()
-            editor.putString("MANY",many)
-            editor.apply()
-
-
-
-
-*/
-
 
 
 
