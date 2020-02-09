@@ -2,165 +2,172 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent">
-<LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/a"
-        android:orientation="vertical">
-    <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:background="@color/white" android:layout_marginBottom="15dp">
-        <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                app:srcCompat="@drawable/a_account"
-                android:id="@+id/imageView13"
-                android:scaleType="fitXY" app:layout_constraintTop_toTopOf="parent"/>
-        <TextView
-                android:text="Account"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/textView29" android:textSize="25sp"
-                android:textStyle="bold" android:textColor="@color/white"
-                app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="20dp"
-                android:layout_marginStart="20dp" app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginTop="58dp"/>
-        <Button
-                android:layout_width="24dp"
-                android:layout_height="24dp" android:id="@+id/go_from_acccount_to_cart"
-                app:layout_constraintEnd_toEndOf="@+id/imageView13" android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp" android:layout_marginTop="58dp"
-                app:layout_constraintTop_toTopOf="parent" android:background="@drawable/ic_cart_svg"/>
-        <TextView
-                android:text="Seraj Al Mutawa"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView30"
-                android:textColor="@color/Black"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="33dp"
-                app:layout_constraintTop_toBottomOf="@+id/imageView13"/>
-        <TextView
-                android:text="seraj@domain.com"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/textView32" android:textColor="@color/darkGreen"
-                app:layout_constraintTop_toBottomOf="@+id/textView30" android:layout_marginTop="12dp"
-                app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginBottom="23dp"/>
-        <de.hdodenhof.circleimageview.CircleImageView
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/profile_image"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                app:civ_border_width="2dp"
-                app:civ_border_color="#FFFFFF"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:src="@color/colorPrimary"/>
-
-        <de.hdodenhof.circleimageview.CircleImageView
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/go_points"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                app:civ_border_width="2dp"
-                app:civ_border_color="@color/darkGreen"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:src="@color/white" android:layout_marginEnd="45dp" android:layout_marginTop="142dp"/>
-    </android.support.constraint.ConstraintLayout>
+            android:layout_height="match_parent">
     <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:layout_marginBottom="15dp">
+            android:layout_height="match_parent"
+            android:background="@color/a"
+            android:orientation="vertical">
+        <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:background="@color/white"
+                android:layout_marginBottom="15dp">
+            <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    app:srcCompat="@drawable/a_account"
+                    android:id="@+id/imageView13"
+                    android:scaleType="fitXY" app:layout_constraintTop_toTopOf="parent"/>
+            <android.support.constraint.ConstraintLayout
+                    android:id="@+id/l_a"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize" app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent">
+                <TextView
+                        android:text="Account"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/textView29" android:textSize="25sp"
+                        android:textStyle="bold" android:textColor="@color/white"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginStart="20dp" app:layout_constraintBottom_toBottomOf="parent"/>
+                <Button
+                        android:layout_width="24dp"
+                        android:layout_height="24dp" android:id="@+id/go_from_acccount_to_cart"
+                        app:layout_constraintEnd_toEndOf="@+id/l_a" android:layout_marginEnd="20dp"
+                        android:background="@drawable/ic_cart_svg" app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_marginBottom="5dp"/>
+            </android.support.constraint.ConstraintLayout>
+            <TextView
+                    android:text="Seraj Al Mutawa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView30"
+                    android:textColor="@color/Black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginTop="33dp"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView13"/>
+            <TextView
+                    android:text="seraj@domain.com"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textView32"
+                    android:textColor="@color/darkGreen"
+                    app:layout_constraintTop_toBottomOf="@+id/textView30" android:layout_marginTop="12dp"
+                    app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginBottom="23dp"/>
+            <de.hdodenhof.circleimageview.CircleImageView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/profile_image"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    app:civ_border_width="2dp"
+                    app:civ_border_color="#FFFFFF"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:src="@color/colorPrimary"/>
 
-        <TextView
+            <de.hdodenhof.circleimageview.CircleImageView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/go_points"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    app:civ_border_width="2dp"
+                    app:civ_border_color="@color/darkGreen"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:src="@color/white" android:layout_marginEnd="45dp" android:layout_marginTop="142dp"/>
+        </android.support.constraint.ConstraintLayout>
+        <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_profile_details"
-                android:drawableEnd="@drawable/ic_go_to_profile"
-                android:text="My Details"
-                android:textSize="16sp"
-                android:gravity="center_vertical"
-                android:drawablePadding="26dp"
-                android:layout_marginRight="25dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginTop="27dp"/>
-        <TextView
+                android:background="@color/white"
+                android:layout_marginBottom="15dp">
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_profile_details"
+                    android:drawableEnd="@drawable/ic_go_to_profile"
+                    android:text="My Details"
+                    android:textSize="16sp"
+                    android:gravity="center_vertical"
+                    android:drawablePadding="26dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="27dp"/>
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_profile_address"
+                    android:drawableEnd="@drawable/ic_go_to_profile"
+                    android:text="My Addresses"
+                    android:textSize="16sp"
+                    android:gravity="center_vertical"
+                    android:drawablePadding="29dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="27dp"/>
+            <TextView
+                    android:id="@+id/to_settings"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_profile_settings"
+                    android:drawableEnd="@drawable/ic_go_to_profile"
+                    android:text="Settings"
+                    android:textSize="16sp"
+                    android:gravity="center_vertical"
+                    android:drawablePadding="27dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="27dp"
+                    android:layout_marginBottom="34dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_profile_address"
-                android:drawableEnd="@drawable/ic_go_to_profile"
-                android:text="My Addresses"
-                android:textSize="16sp"
-                android:gravity="center_vertical"
-                android:drawablePadding="29dp"
-                android:layout_marginRight="25dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginTop="27dp"/>
-        <TextView
-                android:id="@+id/to_settings"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_profile_settings"
-                android:drawableEnd="@drawable/ic_go_to_profile"
-                android:text="Settings"
-                android:textSize="16sp"
-                android:gravity="center_vertical"
-                android:drawablePadding="27dp"
-                android:layout_marginRight="25dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginTop="27dp"
-                android:layout_marginBottom="34dp"/>
+                android:background="@color/white"
+                android:layout_marginBottom="15dp">
 
-    </LinearLayout>
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_profile_rate"
+                    android:drawableEnd="@drawable/ic_go_to_profile"
+                    android:text="Rate App"
+                    android:textSize="16sp"
+                    android:gravity="center_vertical"
+                    android:drawablePadding="28dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="27dp"/>
 
-    <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:layout_marginBottom="15dp">
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_profile_signout"
+                    android:drawableEnd="@drawable/ic_go_to_profile"
+                    android:text="Sign Out"
+                    android:textSize="16sp"
+                    android:gravity="center_vertical"
+                    android:drawablePadding="30dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="27dp"
+                    android:layout_marginBottom="34dp"/>
 
-        <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_profile_rate"
-                android:drawableEnd="@drawable/ic_go_to_profile"
-                android:text="Rate App"
-                android:textSize="16sp"
-                android:gravity="center_vertical"
-                android:drawablePadding="28dp"
-                android:layout_marginRight="25dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginTop="27dp"/>
-
-        <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_profile_signout"
-                android:drawableEnd="@drawable/ic_go_to_profile"
-                android:text="Sign Out"
-                android:textSize="16sp"
-                android:gravity="center_vertical"
-                android:drawablePadding="30dp"
-                android:layout_marginRight="25dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginTop="27dp"
-                android:layout_marginBottom="34dp"/>
-
-    </LinearLayout>
+        </LinearLayout>
 
 
     </LinearLayout>

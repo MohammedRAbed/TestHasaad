@@ -22,14 +22,26 @@ import kotlinx.android.synthetic.main.cart_list.*
 
 class Cart : AppCompatActivity() {
 
-    class CartClass()
+    /*data*/ class CartClass(/*
+    val name:String,val many:String,val price:String,val des:String */ )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cart)
 
 
+        val recyclerViewForCart: RecyclerView = findViewById(R.id.recyclerView_for_cart)
+        recyclerViewForCart.layoutManager = LinearLayoutManager(this)
 
+        val cartFood = ArrayList<CartClass>()
+
+        cartFood.add(CartClass())
+        cartFood.add(CartClass())
+        cartFood.add(CartClass())
+        cartFood.add(CartClass())
+
+        val myAdapterForCart = Cart.CoustumAdapterForCart(cartFood,this)
+        recyclerViewForCart.adapter = myAdapterForCart
 
 
 
@@ -66,18 +78,7 @@ class Cart : AppCompatActivity() {
 
 
 
-        val recyclerViewForCart: RecyclerView = findViewById(R.id.recyclerView_for_cart)
-        recyclerViewForCart.layoutManager = LinearLayoutManager(this)
 
-        val cartFood = ArrayList<CartClass>()
-
-        cartFood.add(CartClass())
-        cartFood.add(CartClass())
-        cartFood.add(CartClass())
-        cartFood.add(CartClass())
-
-        val myAdapterForCart = Cart.CoustumAdapterForCart(cartFood,this)
-        recyclerViewForCart.adapter = myAdapterForCart
     }
 
 
@@ -97,6 +98,12 @@ class Cart : AppCompatActivity() {
 
         override fun onBindViewHolder(p0: myCartHolder, p1: Int) {
             val related : Cart.CartClass = cartt_list[p1]
+            /*
+            p0?.theNameOfCart.text = related.name
+            p0?.theManyOfCart.text = related.many
+            p0?.thePriceOfCart.text = related.price
+            p0?.theDescriptionOfCart.text = related.des
+            */
         }
 
          inner class myCartHolder(itemView: View):RecyclerView.ViewHolder(itemView) {
