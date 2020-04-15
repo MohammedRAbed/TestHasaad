@@ -1,5 +1,6 @@
 package com.example.hasproject
 
+import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -18,9 +19,16 @@ class MainHome : AppCompatActivity() {
     lateinit var personalFragment: PersonalFragment
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_home)
+
+        val sp = getSharedPreferences("SP", Context.MODE_PRIVATE)
+
+
+        val email_json = sp.getString("EMAIL","")
+        val password_json = sp.getString("PASSWORD","")
 
 
 

@@ -16,6 +16,7 @@ class ThirdSignUp : AppCompatActivity() {
         to_finish_signup.setOnClickListener {
             var intintForSignup3 = Intent(this , FinishSignUp::class.java)
             startActivity(intintForSignup3)
+            finish()
         }
 
         back_from3_to_2.setOnClickListener {

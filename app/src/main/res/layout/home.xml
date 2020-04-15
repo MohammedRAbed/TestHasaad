@@ -10,95 +10,77 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
         <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="375dp"
-                android:background="@drawable/main_bg"
+                android:layout_height="wrap_content"
                 android:focusable="false"
                 android:focusableInTouchMode="true">
+
+            <android.support.v7.widget.RecyclerView
+                    android:id="@+id/home_offer_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
             <android.support.constraint.ConstraintLayout
                     android:id="@+id/l_home"
                     android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize" app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent">
+                    android:layout_height="match_parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
                 <TextView
-                        android:text="Home"
+                        android:id="@+id/textView22"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" android:id="@+id/textView22"
-                        android:textColor="@color/white" android:textSize="25sp" android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintHorizontal_bias="0.5" app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent" android:layout_marginTop="23dp"
-                        app:layout_constraintTop_toTopOf="parent"/>
-                <Button
-                        android:layout_width="24dp"
-                        android:layout_height="24dp" android:id="@+id/home_cart"
-                        android:background="@drawable/ic_cart_svg" android:layout_marginEnd="17dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="23dp"
+                        android:text="Home"
+                        android:textColor="@color/white"
+                        android:textSize="25sp"
+                        android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                        android:id="@+id/home_cart"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginEnd="17dp"
+                        android:background="@drawable/ic_cart_svg"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                        android:id="@+id/editText8"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/for_sign_up"
+                        android:ems="10"
+                        android:hint="What are you looking for?"
+                        android:inputType="textPersonName"
+                        android:paddingLeft="20dp"
+                        android:paddingTop="13dp"
+                        android:paddingBottom="13dp"
+                        android:textColor="@color/editGray"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView22" />
             </android.support.constraint.ConstraintLayout>
 
-            <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:hint="What are you looking for?"
-                    android:background="@drawable/for_sign_up"
-                    android:ems="10"
-                    android:id="@+id/editText8"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginEnd="20dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginStart="20dp" android:paddingTop="13dp"
-                    android:paddingBottom="13dp"
-                    android:paddingLeft="20dp"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    android:textColor="@color/editGray"
-                    android:layout_marginTop="15dp"
-                    app:layout_constraintTop_toBottomOf="@+id/l_home"
-            />
-            <TextView
-                    android:text="Lemon  juice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/textView23"
-                    android:textColor="@color/white" android:textSize="36sp" android:textStyle="bold"
-                    android:layout_marginTop="45dp"
-                    app:layout_constraintTop_toBottomOf="@+id/editText8"
-                    app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="20dp"
-                    android:layout_marginStart="20dp"/>
-            <TextView
-                    android:text="9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/textView26"
-                    android:textColor="@color/white" android:textSize="30sp"
-                    android:layout_marginTop="4dp"
-                    app:layout_constraintTop_toBottomOf="@+id/textView23"
-                    app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="57dp"
-                    android:layout_marginStart="57dp"/>
-            <TextView
-                    android:text=",99SR"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/textView27"
-                    android:textColor="@color/white" android:textSize="16sp"
-                    android:layout_marginTop="12dp"
-                    app:layout_constraintTop_toBottomOf="@+id/textView23"
-                    app:layout_constraintStart_toEndOf="@+id/textView26" android:layout_marginStart="4dp"
-                    android:layout_marginLeft="4dp"/>
-            <Button
-                    android:text="Buy now"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/button10"
-                    android:background="@drawable/for_sign_up"
-                    android:textAllCaps="false"
-                    app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="20dp"
-                    android:layout_marginStart="20dp" android:layout_marginTop="3dp"
-                    app:layout_constraintTop_toBottomOf="@+id/textView26"
-                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginRight="245dp"
-                    android:layout_marginEnd="245dp"/>
+
         </android.support.constraint.ConstraintLayout>
         <TextView
                 android:text="Categories Collections"

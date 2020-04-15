@@ -1,23 +1,20 @@
 package com.example.hasproject
 
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentTransaction
-import android.support.v7.widget.CardView
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
-import kotlinx.android.synthetic.main.home_categories_list.*
-import kotlinx.android.synthetic.main.home_categories_list.view.*
+import android.widget.*
+import com.example.hasproject.data.model.signin.ForHome
+import com.example.hasproject.data.remote.APIUtils
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -29,10 +26,24 @@ private const val ARG_PARAM2 = "param2"
  * A simple [Fragment] subclass.
  *
  */
+
 class HomeFragment : Fragment() {
 
-    class HomeCategoriesClass()
-    class HomeFavouriteClass()
+
+    //class HomeFavouriteClass()
+
+    //categories
+    lateinit var recyclerForCat : RecyclerView
+    lateinit var catAdapter : CoustumAdapterForHomeCategories
+
+    //products
+    lateinit var recyclerForPro : RecyclerView
+    lateinit var proAdapter : CoustumAdapterForProductsHome
+
+    //offer product
+    lateinit var recyclerForOff : RecyclerView
+    lateinit var offAdapter : CoustumAdapterForOffersHome
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,130 +51,70 @@ class HomeFragment : Fragment() {
     ): View? {
         val viewToHome = inflater.inflate(R.layout.home, container, false)
 
+        //categories
+        recyclerForCat = viewToHome.findViewById(R.id.recyclerView_for_home_categories)
+        catAdapter = CoustumAdapterForHomeCategories(context!!)
+        recyclerForCat.layoutManager = LinearLayoutManager(context!!,LinearLayout.HORIZONTAL,false)
+        recyclerForCat.adapter = catAdapter
+
+        //products
+        recyclerForPro = viewToHome.findViewById(R.id.recycler_for_home_favourite)
+        proAdapter = CoustumAdapterForProductsHome(context!!)
+        recyclerForPro.layoutManager = LinearLayoutManager(context!!,LinearLayout.HORIZONTAL,false)
+        recyclerForPro.adapter = proAdapter
+
+        //offer product
+        recyclerForOff = viewToHome.findViewById(R.id.home_offer_recyclerview)
+        offAdapter = CoustumAdapterForOffersHome(context!!)
+        recyclerForOff.layoutManager = LinearLayoutManager(context!!, LinearLayout.HORIZONTAL,false)
+        recyclerForOff.adapter = offAdapter
 
 
-        val button : Button = viewToHome.findViewById(R.id.to_categories)
+
+        val mAPIInterface = APIUtils().getAPIInterface()
+        val map: MutableMap<String, String> = HashMap()
+        map["Accept"] = "application/json"
+        map["Accept-Language"] = "en"
+
+        mAPIInterface?.home(map)!!.enqueue(object : Callback<ForHome> {
+            override fun onFailure(call: Call<ForHome>?, t: Throwable?) {
+                Toast.makeText(context, "Error !", Toast.LENGTH_SHORT).show()
+                println("Error")
+            }
+
+            override fun onResponse(call: Call<ForHome>?, response: Response<ForHome>?) {
+                if (response?.body() != null) {
+                    Toast.makeText(context, "Response is not empty !", Toast.LENGTH_SHORT).show()
+                    catAdapter.setMovieListItems(response.body().items.categories)
+                    proAdapter.setProductList(response.body().items.products)
+                    offAdapter.setOfferList(response.body().items.offerProducts)
+                }
+                if(response?.body() == null){
+                    Toast.makeText(context, "Response is empty !", Toast.LENGTH_SHORT).show()
+                    println("response.code ::: " + response?.code())
+                }
+
+            }
+
+        })
+
+
+        val button: Button = viewToHome.findViewById(R.id.to_categories)
         button.setOnClickListener {
-            var intintForGetCategories = Intent(context , Categories::class.java)
+
+            val intintForGetCategories = Intent(context, Categories::class.java)
             startActivity(intintForGetCategories)
+
         }
 
-
-        val cartHome :Button = viewToHome.findViewById(R.id.home_cart)
+       val cartHome: Button = viewToHome.findViewById(R.id.home_cart)
         cartHome.setOnClickListener {
-            var intentForGetCartHome = Intent(context, Cart::class.java)
+            val intentForGetCartHome = Intent(context, Cart::class.java)
             startActivity(intentForGetCartHome)
         }
-
-
-
-        val recycler : RecyclerView = viewToHome.findViewById(R.id.recyclerView_for_home_categories)
-
-        val recyclerViewForHomeCategories: RecyclerView = recycler
-        recyclerViewForHomeCategories.layoutManager = LinearLayoutManager(context, LinearLayout.HORIZONTAL, false)
-
-        val home_categories = ArrayList<HomeCategoriesClass>()
-
-        home_categories.add(HomeCategoriesClass())
-        home_categories.add(HomeCategoriesClass())
-        home_categories.add(HomeCategoriesClass())
-        home_categories.add(HomeCategoriesClass())
-
-        val myAdapterForHomeCategories = CoustumAdapterForHomeCategories(home_categories,context!!)
-        recyclerViewForHomeCategories.adapter = myAdapterForHomeCategories
-
-
-
-
-
-
-
-        val recycler2:RecyclerView = viewToHome.findViewById(R.id.recycler_for_home_favourite)
-        val recyclerForFavouriteHome:RecyclerView =recycler2
-        recyclerForFavouriteHome.layoutManager = LinearLayoutManager(context,LinearLayout.HORIZONTAL,false)
-
-        val home_favourite = ArrayList<HomeFavouriteClass>()
-
-        home_favourite.add(HomeFavouriteClass())
-        home_favourite.add(HomeFavouriteClass())
-        home_favourite.add(HomeFavouriteClass())
-        home_favourite.add(HomeFavouriteClass())
-        home_favourite.add(HomeFavouriteClass())
-
-        val myAdapterForFavouriteHome = CoustumAdapterForFavouriteHome(home_favourite)
-        recyclerForFavouriteHome.adapter = myAdapterForFavouriteHome
-
-
 
         // Inflate the layout for this fragment
         return viewToHome
     }
-
-
-
-
-     class CoustumAdapterForHomeCategories(val home_categories_list_food : ArrayList<HomeCategoriesClass>,val context: Context) :RecyclerView.Adapter<CoustumAdapterForHomeCategories.myHomeCategoriesHolder>() {
-        override fun onCreateViewHolder(p0: ViewGroup, p1: Int): CoustumAdapterForHomeCategories.myHomeCategoriesHolder {
-
-            val c =LayoutInflater.from(p0?.context).inflate(R.layout.home_categories_list,p0,false)
-            return myHomeCategoriesHolder(c)
-        }
-
-        override fun getItemCount(): Int {
-            return home_categories_list_food.size
-        }
-
-        override fun onBindViewHolder(p0: CoustumAdapterForHomeCategories.myHomeCategoriesHolder, p1: Int) {
-            val home_catrgories_food : HomeCategoriesClass = home_categories_list_food[p1]
-        }
-
-
-
-       inner class myHomeCategoriesHolder(itemView: View):RecyclerView.ViewHolder(itemView) {
-            val intent:Intent? =null
-            var theImageOfHomeCategories:ImageView
-            var theNameOfHomeCategories :TextView
-            var theNumberOfItemsOfHomeCategories:TextView
-            var thepriceOfItemsOfHomeCategories :TextView
-
-           init {
-               theImageOfHomeCategories =itemView.findViewById(R.id.image_for_home_categories) as ImageView
-                theNameOfHomeCategories =itemView.findViewById(R.id.name_for_home_categories) as TextView
-                theNumberOfItemsOfHomeCategories =itemView.findViewById(R.id.more_home_items) as TextView
-                thepriceOfItemsOfHomeCategories =itemView.findViewById(R.id.price_home_items) as TextView
-
-               itemView.setOnClickListener {
-                   context.startActivity(Intent(context,ProductDetails::class.java))
-               }
-           }
-        }
-
-
-
-    }
-
-    class CoustumAdapterForFavouriteHome(val home_favourite_list_food :ArrayList<HomeFavouriteClass>) :RecyclerView.Adapter<CoustumAdapterForFavouriteHome.myFavouriteHomeHolder> () {
-        override fun onCreateViewHolder(p0: ViewGroup, p1: Int): CoustumAdapterForFavouriteHome.myFavouriteHomeHolder {
-            val k =LayoutInflater.from(p0?.context).inflate(R.layout.favourite_home,p0,false)
-            return myFavouriteHomeHolder(k)        }
-
-        override fun getItemCount(): Int {
-            return home_favourite_list_food.size
-        }
-
-        override fun onBindViewHolder(p0: CoustumAdapterForFavouriteHome.myFavouriteHomeHolder, p1: Int) {
-            val home_favourite_food : HomeFavouriteClass = home_favourite_list_food[p1]
-        }
-
-        class myFavouriteHomeHolder(itemView: View) :RecyclerView.ViewHolder(itemView) {
-
-            var myText = itemView.findViewById(R.id.my_text) as TextView
-            var myImage = itemView.findViewById(R.id.my_image) as ImageView
-
-        }
-
-    }
-
-
 
 }

@@ -22,8 +22,7 @@ import kotlinx.android.synthetic.main.cart_list.*
 
 class Cart : AppCompatActivity() {
 
-    /*data*/ class CartClass(/*
-    val name:String,val many:String,val price:String,val des:String */ )
+    data class CartClass(val name:String,val many:String,val price:String,val des:String)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,10 +34,16 @@ class Cart : AppCompatActivity() {
 
         val cartFood = ArrayList<CartClass>()
 
-        cartFood.add(CartClass())
-        cartFood.add(CartClass())
-        cartFood.add(CartClass())
-        cartFood.add(CartClass())
+        val sharedPreferences = getSharedPreferences("SP_Info", Context.MODE_PRIVATE)
+
+        val many = sharedPreferences.getString("MANY","1")
+        val des =sharedPreferences.getString("DES","no extra description")
+
+        val p_name = sharedPreferences.getString("NAME","")
+        val price =sharedPreferences.getString("PRICE","")
+
+        cartFood.add(CartClass(p_name,many,price,des))
+
 
         val myAdapterForCart = Cart.CoustumAdapterForCart(cartFood,this)
         recyclerViewForCart.adapter = myAdapterForCart
@@ -47,8 +52,8 @@ class Cart : AppCompatActivity() {
 
 
         check_cart.setOnClickListener {
-            var mDialogView2 = LayoutInflater.from(this).inflate(R.layout.activity_order_note,null)
-            var mBuilder2 = AlertDialog.Builder(this)
+            val mDialogView2 = LayoutInflater.from(this).inflate(R.layout.activity_order_note,null)
+            val mBuilder2 = AlertDialog.Builder(this)
                 .setView(mDialogView2)
 
             var mAlertDialog2 = mBuilder2.show()
@@ -96,14 +101,14 @@ class Cart : AppCompatActivity() {
             return cartt_list.size
         }
 
-        override fun onBindViewHolder(p0: myCartHolder, p1: Int) {
-            val related : Cart.CartClass = cartt_list[p1]
-            /*
+        override fun onBindViewHolder(p0: myCartHolder, position: Int) {
+            val related : Cart.CartClass = cartt_list[position]
+
             p0?.theNameOfCart.text = related.name
-            p0?.theManyOfCart.text = related.many
+            p0?.theManyOfCart.text = "${related.many}"
             p0?.thePriceOfCart.text = related.price
             p0?.theDescriptionOfCart.text = related.des
-            */
+
         }
 
          inner class myCartHolder(itemView: View):RecyclerView.ViewHolder(itemView) {
@@ -121,19 +126,9 @@ class Cart : AppCompatActivity() {
                  thePriceOfCart = itemView.findViewById(R.id.price_cart) as TextView
                 theDescriptionOfCart = itemView.findViewById(R.id.description_cart) as TextView
 
-                val sharedPreferences = context.getSharedPreferences("SP_Info", Context.MODE_PRIVATE)
-
-                val many = sharedPreferences.getInt("MANY",1)
-                val des =sharedPreferences.getString("DES","no extra description")
-                theManyOfCart.text = "$many"
-                theDescriptionOfCart.text = "$des"
 
 
-                val sharedPreferences2 = context.getSharedPreferences("SP_Info", Context.MODE_PRIVATE)
-                val p_name = sharedPreferences2.getString("NAME","")
-                val price =sharedPreferences2.getString("PRICE","")
-                theNameOfCart.text = "$p_name"
-                thePriceOfCart.text = "$price"
+
             }
         }
 

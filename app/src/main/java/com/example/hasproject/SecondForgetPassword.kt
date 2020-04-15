@@ -15,6 +15,7 @@ class SecondForgetPassword : AppCompatActivity() {
         to_get_start2.setOnClickListener {
             var intintForGetStart = Intent(this , FinishSignUp::class.java)
             startActivity(intintForGetStart)
+            finish()
         }
     }
 }

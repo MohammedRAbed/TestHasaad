@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import kotlinx.android.synthetic.main.account_personal.*
 import kotlinx.android.synthetic.main.account_personal.view.*
 
 
@@ -26,7 +27,9 @@ class PersonalFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+
         val viewToPersonal = inflater.inflate(R.layout.account_personal, container, false)
+
 
 
         viewToPersonal.go_points.setOnClickListener {

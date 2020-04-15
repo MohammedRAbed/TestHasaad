@@ -75,7 +75,7 @@
 
         <ImageView android:layout_width="match_parent" android:layout_height="match_parent"
                    app:srcCompat="@drawable/main_back_for_sign_in" android:scaleType="fitXY"
-                   android:id="@+id/imageView6" app:layout_constraintStart_toStartOf="parent"
+                   android:id="@+id/im_signup3" app:layout_constraintStart_toStartOf="parent"
                    app:layout_constraintHorizontal_bias="0.5" app:layout_constraintEnd_toEndOf="parent"/>
         <TextView
                 android:text="Verify your mobile"

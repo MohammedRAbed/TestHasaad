@@ -14,7 +14,6 @@ class OnBoardingActivity : AppCompatActivity() {
         sign_in.setOnClickListener {
             var intintForSignin = Intent(this , SignInActivity::class.java)
             startActivity(intintForSignin)
-
         }
 
         sign_up.setOnClickListener {
@@ -25,6 +24,7 @@ class OnBoardingActivity : AppCompatActivity() {
         skip.setOnClickListener {
             val intentForSkip = Intent(this, MainHome::class.java)
             startActivity(intentForSkip)
+            finish()
         }
     }
 }

@@ -69,10 +69,10 @@ class ProductDetails : AppCompatActivity() {
             firstDialogView.confirm_add_cart.setOnClickListener {
 
 
-                val many = Integer.parseInt(firstDialogView.et_many.text.toString().trim())
+                val many = firstDialogView.et_many.text.toString().trim()
                 val des = firstDialogView.et_des.text.toString().trim()
                 val editor = sharedPreferences.edit()
-                editor.putInt("MANY",many)
+                editor.putString("MANY",many)
                 editor.putString("DES",des)
                 editor.apply()
 

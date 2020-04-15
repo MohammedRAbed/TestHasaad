@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="375dp">
+
+    <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <ImageView
+                android:id="@+id/home_order_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@mipmap/ic_launcher"
+                tools:layout_editor_absoluteX="-77dp"
+                tools:layout_editor_absoluteY="-79dp" />
+
+        <TextView
+                android:id="@+id/home_order_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="37dp"
+                android:text="Lemon Juice"
+                android:textColor="@color/white"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/buy_home_order"
+                app:layout_constraintStart_toStartOf="@+id/home_order_image" />
+
+        <Button
+                android:id="@+id/buy_home_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/for_sign_up"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="60dp"
+                android:text="Buy Now"
+                android:textColor="@color/darkGreen"
+                android:textAllCaps="false"
+                app:layout_constraintBottom_toBottomOf="@+id/home_order_image"
+                app:layout_constraintStart_toStartOf="@+id/home_order_image" />
+    </android.support.constraint.ConstraintLayout>
+</android.support.v7.widget.CardView>
