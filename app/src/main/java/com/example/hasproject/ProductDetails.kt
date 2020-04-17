@@ -14,6 +14,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.example.hasproject.passData.PassProData
 import kotlinx.android.synthetic.main.activity_ad_to_cart_dialog.*
 import kotlinx.android.synthetic.main.activity_ad_to_cart_dialog.view.*
 import kotlinx.android.synthetic.main.activity_cart.*
@@ -31,6 +32,9 @@ class ProductDetails : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_details)
 
+        val nameProD :TextView = findViewById(R.id.product_name)
+        val proData : PassProData? = intent.getSerializableExtra("ProData") as? PassProData
+        nameProD.text  = proData?.name
 
 
 

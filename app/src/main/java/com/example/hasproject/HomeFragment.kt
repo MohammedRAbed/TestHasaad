@@ -113,6 +113,7 @@ class HomeFragment : Fragment() {
             startActivity(intentForGetCartHome)
         }
 
+
         // Inflate the layout for this fragment
         return viewToHome
     }

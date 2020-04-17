@@ -11,6 +11,7 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.hasproject.data.model.signin.ForHome
+import com.example.hasproject.passData.PassProData
 
 class CoustumAdapterForProductsHome(val context: Context) :RecyclerView.Adapter<CoustumAdapterForProductsHome.MyViewHolder>() {
 
@@ -32,6 +33,13 @@ class CoustumAdapterForProductsHome(val context: Context) :RecyclerView.Adapter<
         Glide.with(context).load(home_product_list_food.get(p1).image)
             .apply(RequestOptions().centerCrop())
             .into(p0.myImage)
+
+        p0.myImage.setOnClickListener{
+            val intent = Intent(context,ProductDetails::class.java)
+            val proData = PassProData(p0.myText.text.toString())
+            intent.putExtra("ProData" , proData)
+            context.startActivity(intent)
+        }
     }
 
     fun setProductList(list: List<ForHome.Items.Product>) {
@@ -48,9 +56,6 @@ class CoustumAdapterForProductsHome(val context: Context) :RecyclerView.Adapter<
             myText = itemView.findViewById(R.id.my_text) as TextView
             myImage = itemView.findViewById(R.id.my_image) as ImageView
 
-            itemView.setOnClickListener {
-                context.startActivity(Intent(context, ProductDetails::class.java))
-            }
         }
     }
 }

@@ -11,6 +11,7 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.hasproject.data.model.signin.ForHome
+import com.example.hasproject.passData.PassProData
 
 class CoustumAdapterForHomeCategories(
     val context: Context
@@ -42,6 +43,13 @@ class CoustumAdapterForHomeCategories(
         Glide.with(context).load(home_categories_list_food.get(p).image)
             .apply(RequestOptions().centerCrop())
             .into(holder.theImageOfHomeCategories)
+
+        holder.theImageOfHomeCategories.setOnClickListener{
+            val intent : Intent = Intent(context, ProductDetails::class.java)
+            val proData: PassProData = PassProData(holder.theNameOfHomeCategories.text.toString())
+            intent.putExtra("ProData",proData)
+            context.startActivity(intent)
+        }
     }
 
     fun setMovieListItems(home_categories_list_food: List<ForHome.Items.Category>) {
@@ -67,10 +75,6 @@ class CoustumAdapterForHomeCategories(
             thepriceOfItemsOfHomeCategories =
                 itemView.findViewById(R.id.price_home_items) as TextView
 
-
-            itemView.setOnClickListener {
-                context.startActivity(Intent(context, ProductDetails::class.java))
-            }
         }
     }
 }
