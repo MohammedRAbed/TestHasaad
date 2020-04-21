@@ -45,9 +45,7 @@ class CoustumAdapterForHomeCategories(
             .into(holder.theImageOfHomeCategories)
 
         holder.theImageOfHomeCategories.setOnClickListener{
-            val intent : Intent = Intent(context, ProductDetails::class.java)
-            val proData: PassProData = PassProData(holder.theNameOfHomeCategories.text.toString())
-            intent.putExtra("ProData",proData)
+            val intent : Intent = Intent(context, Categories::class.java)
             context.startActivity(intent)
         }
     }

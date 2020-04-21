@@ -40,10 +40,11 @@ class HomeFragment : Fragment() {
     lateinit var recyclerForPro : RecyclerView
     lateinit var proAdapter : CoustumAdapterForProductsHome
 
+    /*
     //offer product
     lateinit var recyclerForOff : RecyclerView
     lateinit var offAdapter : CoustumAdapterForOffersHome
-
+*/
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -63,12 +64,13 @@ class HomeFragment : Fragment() {
         recyclerForPro.layoutManager = LinearLayoutManager(context!!,LinearLayout.HORIZONTAL,false)
         recyclerForPro.adapter = proAdapter
 
+        /*
         //offer product
         recyclerForOff = viewToHome.findViewById(R.id.home_offer_recyclerview)
         offAdapter = CoustumAdapterForOffersHome(context!!)
         recyclerForOff.layoutManager = LinearLayoutManager(context!!, LinearLayout.HORIZONTAL,false)
         recyclerForOff.adapter = offAdapter
-
+*/
 
 
         val mAPIInterface = APIUtils().getAPIInterface()
@@ -87,11 +89,10 @@ class HomeFragment : Fragment() {
                     Toast.makeText(context, "Response is not empty !", Toast.LENGTH_SHORT).show()
                     catAdapter.setMovieListItems(response.body().items.categories)
                     proAdapter.setProductList(response.body().items.products)
-                    offAdapter.setOfferList(response.body().items.offerProducts)
+                    //offAdapter.setOfferList(response.body().items.offerProducts)
                 }
                 if(response?.body() == null){
                     Toast.makeText(context, "Response is empty !", Toast.LENGTH_SHORT).show()
-                    println("response.code ::: " + response?.code())
                 }
 
             }

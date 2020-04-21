@@ -9,60 +9,60 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.hasproject.data.model.signin.ForHome
 import com.example.hasproject.passData.PassProData
 
-class CoustumAdapterForOffersHome(val context: Context) : RecyclerView.Adapter<CoustumAdapterForOffersHome.MyViewHolder>() {
-    var home_offers_list : List<ForHome.Items.OfferProduct> = listOf()
-
-    override fun onCreateViewHolder(
-        p0: ViewGroup,
-        p1: Int
-    ): MyViewHolder {
-        val view : View = LayoutInflater.from(context).inflate(R.layout.home_orders_list , p0 , false)
-        return MyViewHolder(view)
-    }
-
-    override fun getItemCount(): Int {
-        return home_offers_list.size
-    }
-
-    override fun onBindViewHolder(p0: CoustumAdapterForOffersHome.MyViewHolder, p1: Int) {
-        p0.theNameOfOrder.text = home_offers_list.get(p1).title
-        Glide.with(context).load(home_offers_list.get(p1).image)
-            .apply(RequestOptions().centerCrop())
-            .into(p0.theImageOfOrder)
-
-        p0.theImageOfOrder.setOnClickListener {
-            val intent : Intent = Intent(context, ProductDetails::class.java)
-            val proData: PassProData = PassProData(p0.theNameOfOrder.text.toString())
-            intent.putExtra("ProData",proData)
-            context.startActivity(intent)
-        }
-
-
-    }
-
-    fun setOfferList(list: List<ForHome.Items.OfferProduct>) {
-        this.home_offers_list = list
-        notifyDataSetChanged()
-    }
-    
-    inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var theNameOfOrder : TextView
-        var theImageOfOrder : ImageView
-        var theBtnToBuy : Button
-
-        init {
-            theNameOfOrder = itemView.findViewById(R.id.home_order_name)
-            theImageOfOrder = itemView.findViewById(R.id.home_order_image)
-            theBtnToBuy = itemView.findViewById(R.id.buy_home_order)
-
-
-        }
-    }
-
-}
+// class CoustumAdapterForOffersHome(val context: Context) : RecyclerView.Adapter<CoustumAdapterForOffersHome.MyViewHolder>() {
+//
+// var home_offers_list : List<ForHome.Items.OfferProduct> = listOf()
+//
+// override fun onCreateViewHolder(
+// p0: ViewGroup,
+// p1: Int
+// ): MyViewHolder {
+// val view : View = LayoutInflater.from(context).inflate(R.layout.home_orders_list , p0 , false)
+// return MyViewHolder(view)
+// }
+//
+// override fun getItemCount(): Int {
+// return home_offers_list.size
+// }
+//
+// override fun onBindViewHolder(p0: CoustumAdapterForOffersHome.MyViewHolder, p1: Int) {
+// p0.theNameOfOrder.text = home_offers_list.get(p1).title
+// Glide.with(context).load(home_offers_list.get(p1).image)
+// .apply(RequestOptions().centerCrop())
+// .into(p0.theImageOfOrder)
+//
+// p0.theImageOfOrder.setOnClickListener {
+// val intent : Intent = Intent(context, ProductDetails::class.java)
+// val proData: PassProData = PassProData(p0.theNameOfOrder.text.toString())
+// intent.putExtra("ProData",proData)
+// context.startActivity(intent)
+// }
+//
+//
+// }
+//
+// fun setOfferList(list: List<ForHome.Items.OfferProduct>) {
+// this.home_offers_list = list
+// notifyDataSetChanged()
+// }
+//
+// inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+// var theNameOfOrder : TextView
+// var theImageOfOrder : ImageView
+// var theBtnToBuy : Button
+//
+// init {
+// theNameOfOrder = itemView.findViewById(R.id.home_order_name)
+// theImageOfOrder = itemView.findViewById(R.id.home_order_image)
+// theBtnToBuy = itemView.findViewById(R.id.buy_home_order)
+//
+//
+// }
+// }
+//
+// }

@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.hasproject.data.model.signin.ForHome
 import com.example.hasproject.passData.PassProData
+import kotlin.math.round
 
 class CoustumAdapterForProductsHome(val context: Context) :RecyclerView.Adapter<CoustumAdapterForProductsHome.MyViewHolder>() {
 
@@ -29,6 +30,8 @@ class CoustumAdapterForProductsHome(val context: Context) :RecyclerView.Adapter<
     override fun onBindViewHolder(p0: MyViewHolder, p1: Int) {
         //title
         p0.myText.text = home_product_list_food.get(p1).title
+        //price
+        p0.myPrice.text = "${home_product_list_food.get(p1).units.get(0).pivot.price.toDouble()} SR"
         //image
         Glide.with(context).load(home_product_list_food.get(p1).image)
             .apply(RequestOptions().centerCrop())
@@ -36,7 +39,7 @@ class CoustumAdapterForProductsHome(val context: Context) :RecyclerView.Adapter<
 
         p0.myImage.setOnClickListener{
             val intent = Intent(context,ProductDetails::class.java)
-            val proData = PassProData(p0.myText.text.toString())
+            val proData = PassProData(p0.myText.text.toString(),p0.myPrice.text.toString(),home_product_list_food.get(p1).units.get(0).title)
             intent.putExtra("ProData" , proData)
             context.startActivity(intent)
         }
@@ -51,10 +54,12 @@ class CoustumAdapterForProductsHome(val context: Context) :RecyclerView.Adapter<
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var myText : TextView
         var myImage : ImageView
+        var myPrice : TextView
 
         init {
             myText = itemView.findViewById(R.id.my_text) as TextView
             myImage = itemView.findViewById(R.id.my_image) as ImageView
+            myPrice = itemView.findViewById(R.id.my_price) as TextView
 
         }
     }

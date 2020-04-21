@@ -15,7 +15,7 @@ data class ForHome(
         @SerializedName("categories")
         val categories: List<Category> = listOf(),
         @SerializedName("offer_products")
-        val offerProducts: List<OfferProduct> = listOf(),
+        val offerProducts: List<Any> = listOf(),
         @SerializedName("products")
         val products: List<Product> = listOf()
     ) {
@@ -30,64 +30,54 @@ data class ForHome(
             val title: String = ""
         )
 
-        data class OfferProduct(
-            @SerializedName("id")
-            val id: Int = 0,
-            @SerializedName("image")
-            val image: String = "",
-            @SerializedName("is_offer")
-            val isOffer: String = "",
-            @SerializedName("price")
-            val price: String = "",
-            @SerializedName("price_after_discount")
-            val priceAfterDiscount: Any = Any(),
-            @SerializedName("sub_category")
-            val subCategory: SubCategory = SubCategory(),
-            @SerializedName("sub_category_id")
-            val subCategoryId: String = "",
-            @SerializedName("title")
-            val title: String = "",
-            @SerializedName("type")
-            val type: String = ""
-        ) {
-            data class SubCategory(
-                @SerializedName("category_id")
-                val categoryId: String = "",
-                @SerializedName("id")
-                val id: Int = 0,
-                @SerializedName("title")
-                val title: String = ""
-            )
-        }
-
         data class Product(
+            @SerializedName("category")
+            val category: Category = Category(),
+            @SerializedName("category_id")
+            val categoryId: String = "",
+            @SerializedName("details")
+            val details: Any = Any(),
             @SerializedName("id")
             val id: Int = 0,
             @SerializedName("image")
             val image: String = "",
             @SerializedName("is_offer")
             val isOffer: String = "",
-            @SerializedName("price")
-            val price: String = "",
             @SerializedName("price_after_discount")
             val priceAfterDiscount: Any = Any(),
-            @SerializedName("sub_category")
-            val subCategory: SubCategory = SubCategory(),
-            @SerializedName("sub_category_id")
-            val subCategoryId: String = "",
             @SerializedName("title")
             val title: String = "",
-            @SerializedName("type")
-            val type: String = ""
+            @SerializedName("units")
+            val units: List<Unit> = listOf()
         ) {
-            data class SubCategory(
-                @SerializedName("category_id")
-                val categoryId: String = "",
+            data class Category(
+                @SerializedName("count_product")
+                val countProduct: Int = 0,
                 @SerializedName("id")
                 val id: Int = 0,
+                @SerializedName("image")
+                val image: String = "",
                 @SerializedName("title")
                 val title: String = ""
             )
+
+            data class Unit(
+                @SerializedName("id")
+                val id: Int = 0,
+                @SerializedName("pivot")
+                val pivot: Pivot = Pivot(),
+                @SerializedName("title")
+                val title: String = ""
+            ) {
+                data class Pivot(
+                    @SerializedName("price")
+                    val price: String = "",
+                    @SerializedName("product_id")
+                    val productId: String = "",
+                    @SerializedName("unit_id")
+                    val unitId: String = ""
+                )
+            }
         }
     }
 }

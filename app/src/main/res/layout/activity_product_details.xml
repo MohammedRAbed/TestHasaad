@@ -93,27 +93,35 @@
                     app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintEnd_toEndOf="parent"/>
             <TextView
-                    android:text="Package"
+                    android:text="3"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/textView67"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/packagee"
                     android:layout_marginTop="22dp"
-                    app:layout_constraintTop_toBottomOf="@+id/p_price" app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5" app:layout_constraintEnd_toEndOf="parent"
-                    android:textColor="@color/red" android:textStyle="bold"/>
-            <TextView
-                    android:text="Item"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/textView68"
+                    app:layout_constraintTop_toBottomOf="@+id/p_price"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintEnd_toEndOf="parent"
                     android:textColor="@color/grayText"
-                    app:layout_constraintStart_toEndOf="@+id/textView67"
+                    android:textStyle="bold"/>
+            <TextView
+                    android:textStyle="bold"
+                    android:text="2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/itemss"
+                    android:textColor="@color/grayText"
+                    app:layout_constraintStart_toEndOf="@+id/packagee"
                     android:layout_marginStart="35dp"
-                    android:layout_marginTop="22dp" app:layout_constraintTop_toBottomOf="@+id/p_price"/>
+                    android:layout_marginTop="22dp"
+                    app:layout_constraintTop_toBottomOf="@+id/p_price"/>
             <TextView
-                    android:text="Kg"
+                    android:textStyle="bold"
+                    android:text="1"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/textView69"
+                    android:layout_height="wrap_content" android:id="@+id/kg"
                     android:textColor="@color/grayText"
-                    app:layout_constraintEnd_toStartOf="@+id/textView67"
+                    app:layout_constraintEnd_toStartOf="@+id/packagee"
                     android:layout_marginEnd="35dp" android:layout_marginTop="22dp"
                     app:layout_constraintTop_toBottomOf="@+id/p_price"/>
             <Button
@@ -122,7 +130,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/add_to_cart_btn"
                     android:layout_marginTop="15dp"
-                    app:layout_constraintTop_toBottomOf="@+id/textView67"
+                    app:layout_constraintTop_toBottomOf="@+id/packagee"
                     android:background="@drawable/for_buttons"
                     android:textAllCaps="false" android:textColor="@color/white" android:textSize="17sp"
                     app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
@@ -155,7 +163,7 @@
         <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" app:srcCompat="@drawable/main_ananass"
-                android:id="@+id/imageView25"
+                android:id="@+id/product_image"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.5"
                 android:layout_marginTop="103dp" app:layout_constraintTop_toTopOf="@+id/constraintLayout2"/>

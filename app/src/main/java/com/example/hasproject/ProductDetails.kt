@@ -1,7 +1,9 @@
 package com.example.hasproject
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.FragmentTransaction
@@ -28,18 +30,44 @@ class ProductDetails : AppCompatActivity() {
 
 
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_details)
-
         val nameProD :TextView = findViewById(R.id.product_name)
+        val priceProD : TextView = findViewById(R.id.p_price)
+        val kgPro : TextView = findViewById(R.id.kg)
+        val itemsPro : TextView = findViewById(R.id.itemss)
+        val pacPro:TextView = findViewById(R.id.packagee)
+        val type : Int = 0
+
         val proData : PassProData? = intent.getSerializableExtra("ProData") as? PassProData
         nameProD.text  = proData?.name
+        priceProD.text = "${proData?.price}"
+        kgPro.text = proData?.title
+        itemsPro.text = proData?.title
+        pacPro.text = proData?.title
+
+        kgPro.setOnClickListener {
+            kgPro.setTextColor(Color.parseColor("#EB1D1D"))
+            itemsPro.setTextColor(Color.parseColor("#898989"))
+            pacPro.setTextColor(Color.parseColor("#898989"))
+        }
+        itemsPro.setOnClickListener {
+            kgPro.setTextColor(Color.parseColor("#898989"))
+            itemsPro.setTextColor(Color.parseColor("#EB1D1D"))
+            pacPro.setTextColor(Color.parseColor("#898989"))
+        }
+        pacPro.setOnClickListener {
+            kgPro.setTextColor(Color.parseColor("#898989"))
+            itemsPro.setTextColor(Color.parseColor("#898989"))
+            pacPro.setTextColor(Color.parseColor("#EB1D1D"))
+        }
 
 
 
         go_from_details_to_cart.setOnClickListener {
-            var intintForGoFromDetailsToCart = Intent(this , Cart::class.java)
+            val intintForGoFromDetailsToCart = Intent(this , Cart::class.java)
             startActivity(intintForGoFromDetailsToCart)
         }
 
@@ -51,7 +79,6 @@ class ProductDetails : AppCompatActivity() {
 
         add_to_cart_btn.setOnClickListener {
 
-
             val price =  p_price.text.toString().trim()
             val p_name = product_name.text.toString().trim()
             val editor = sharedPreferences2.edit()
@@ -60,16 +87,14 @@ class ProductDetails : AppCompatActivity() {
             editor.apply()
 
 
+            //For Dialog ..
 
             var firstDialogView = LayoutInflater.from(this).inflate(R.layout.activity_ad_to_cart_dialog,null)
             var firstBuilder = AlertDialog.Builder(this)
                 .setView(firstDialogView)
             var firstAlertDialog = firstBuilder.show()
 
-
-
             val sharedPreferences = getSharedPreferences("SP_Info", Context.MODE_PRIVATE)
-
             firstDialogView.confirm_add_cart.setOnClickListener {
 
 
@@ -88,8 +113,6 @@ class ProductDetails : AppCompatActivity() {
             }
 
             firstAlertDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent)
-
-
 
 
         }
