@@ -1,20 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                             xmlns:app="http://schemas.android.com/apk/res-auto"
-                                             xmlns:tools="http://schemas.android.com/tools"
-                                             android:layout_width="match_parent"
-                                             android:layout_height="match_parent" android:background="@color/darkGreen">
-    <TextView
-            android:text="Products"
-            android:layout_width="wrap_content"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/a"
+        android:orientation="vertical">
+
+    <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView31"
-            android:textSize="30sp"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
-</android.support.constraint.ConstraintLayout>
+            android:background="@drawable/for_settings">
+
+        <android.support.constraint.ConstraintLayout
+                android:id="@+id/l_f"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            <TextView android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="25sp"
+                    android:text="All Products"
+                    android:textColor="@color/white"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="20dp"
+                    android:textStyle="bold"
+                    android:id="@+id/textView44"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <Button
+                    android:layout_height="24dp"
+                    android:id="@+id/go_from_favourite_to_cart"
+                    android:layout_width="24dp"
+                    android:background="@drawable/ic_cart_svg"
+                    android:layout_marginEnd="17dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginBottom="5dp"/>
+
+        </android.support.constraint.ConstraintLayout>
+
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:hint="What are you looking for?"
+                android:ems="10"
+                android:id="@+id/editText13"
+                android:layout_marginTop="12dp"
+                app:layout_constraintTop_toBottomOf="@+id/l_f"
+                android:background="@drawable/search_looking_for"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginEnd="20dp"
+                android:paddingBottom="13dp"
+                android:paddingTop="13dp"
+                android:paddingLeft="20dp"
+                android:textSize="14sp"
+                android:textColor="@color/white"
+                android:alpha="0.30"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="17dp"/>
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.design.widget.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            />
+
+    <android.support.v4.view.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+</LinearLayout>
