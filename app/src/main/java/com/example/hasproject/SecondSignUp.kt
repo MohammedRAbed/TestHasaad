@@ -16,6 +16,8 @@ class SecondSignUp : AppCompatActivity() {
         to_signup3.setOnClickListener {
             var intintForSignup2 = Intent(this , ThirdSignUp::class.java)
             startActivity(intintForSignup2)
+            overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left)
+
         }
         back_from_2_to_1.setOnClickListener {
             finish()

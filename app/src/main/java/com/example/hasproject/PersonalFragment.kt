@@ -21,7 +21,6 @@ private const val ARG_PARAM2 = "param2"
  *
  */
 class PersonalFragment : Fragment() {
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

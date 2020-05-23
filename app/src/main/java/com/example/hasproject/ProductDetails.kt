@@ -35,15 +35,27 @@ class ProductDetails : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_details)
         val nameProD :TextView = findViewById(R.id.product_name)
-        val priceProD : TextView = findViewById(R.id.p_price)
+        val offerProD : TextView = findViewById(R.id.offer_p)
+        val priceProD : TextView = findViewById(R.id.price_p)
+        val imgOffProD : ImageView = findViewById(R.id.off_img)
         val kgPro : TextView = findViewById(R.id.kg)
         val itemsPro : TextView = findViewById(R.id.itemss)
         val pacPro:TextView = findViewById(R.id.packagee)
-        val type : Int = 0
 
         val proData : PassProData? = intent.getSerializableExtra("ProData") as? PassProData
+
         nameProD.text  = proData?.name
-        priceProD.text = "${proData?.price}"
+
+        if(proData?.offer == "") {
+            offerProD.text = proData.price
+            priceProD.text = ""
+            imgOffProD.visibility = View.INVISIBLE
+        } else {
+            offerProD.text = proData?.offer
+            priceProD.text = proData?.price
+
+        }
+
         kgPro.text = proData?.title
         itemsPro.text = proData?.title
         pacPro.text = proData?.title
@@ -79,7 +91,7 @@ class ProductDetails : AppCompatActivity() {
 
         add_to_cart_btn.setOnClickListener {
 
-            val price =  p_price.text.toString().trim()
+            val price =  offerProD.text.toString().trim()
             val p_name = product_name.text.toString().trim()
             val editor = sharedPreferences2.edit()
             editor.putString("NAME",p_name)

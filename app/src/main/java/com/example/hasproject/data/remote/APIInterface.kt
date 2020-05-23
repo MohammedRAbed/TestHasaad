@@ -1,7 +1,9 @@
 package com.example.hasproject.data.remote
 
+import com.example.hasproject.data.model.signin.ForFoodProducts
 import com.example.hasproject.data.model.signin.ForHome
 import com.example.hasproject.data.model.signin.ForLogIn
+import com.example.hasproject.data.model.signin.ForProTabs
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -21,6 +23,19 @@ interface APIInterface {
     fun home(
         @HeaderMap accept_home_cat: MutableMap<String, String>
     ): Call<ForHome>
+
+    //products tabs
+    @GET("category")
+    fun proTabs(
+        @HeaderMap accept_tab : MutableMap<String,String>
+    ) : Call<ForProTabs>
+
+    //products
+    @GET("category/{id}/products?page=1&sort_by=low_to_high&price_from=160&price_to=700&title=Blackcu")
+    fun productsOfCategory(
+        @HeaderMap accept_pro_cat :MutableMap<String,String>,
+        @Path("id") id : Int
+    ) : Call<ForFoodProducts>
 
 
 }

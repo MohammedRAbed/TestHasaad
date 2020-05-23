@@ -30,16 +30,21 @@ class CoustumAdapterForProductsHome(val context: Context) :RecyclerView.Adapter<
     override fun onBindViewHolder(p0: MyViewHolder, p1: Int) {
         //title
         p0.myText.text = home_product_list_food.get(p1).title
-        //price
-        p0.myPrice.text = "${home_product_list_food.get(p1).units.get(0).pivot.price.toDouble()} SR"
         //image
         Glide.with(context).load(home_product_list_food.get(p1).image)
             .apply(RequestOptions().centerCrop())
             .into(p0.myImage)
+        //price&offers
+        p0.myPrice.text = "${home_product_list_food.get(p1).units.get(0).pivot.price} SR"
+
 
         p0.myImage.setOnClickListener{
             val intent = Intent(context,ProductDetails::class.java)
-            val proData = PassProData(p0.myText.text.toString(),p0.myPrice.text.toString(),home_product_list_food.get(p1).units.get(0).title)
+            val proData = PassProData(
+                p0.myText.text.toString(),
+                home_product_list_food.get(p1).units.get(0).title,
+                p0.myPrice.text.toString(),
+                "")
             intent.putExtra("ProData" , proData)
             context.startActivity(intent)
         }
@@ -48,6 +53,7 @@ class CoustumAdapterForProductsHome(val context: Context) :RecyclerView.Adapter<
     fun setProductList(list: List<ForHome.Items.Product>) {
         this.home_product_list_food = list
         notifyDataSetChanged()
+
     }
 
 

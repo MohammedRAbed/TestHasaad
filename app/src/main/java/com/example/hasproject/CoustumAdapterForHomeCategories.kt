@@ -27,7 +27,6 @@ class CoustumAdapterForHomeCategories(
         return myHomeCategoriesHolder(view)
     }
 
-
     override fun getItemCount(): Int {
         return home_categories_list_food.size
     }
