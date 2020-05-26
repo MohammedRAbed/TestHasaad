@@ -119,8 +119,8 @@ class FishFood : Fragment(){
                 val proData = PassProData(
                     p0.theNameOfPro.text.toString(),
                     pro_food_list.get(p1).units.get(0).title,
-                    p0.thePriceOfPro.text.toString(),
-                    p0.theOfferOfPro.text.toString()
+                    p0.thePriceOfPro.text.toString() + " SR",
+                    p0.theOfferOfPro.text.toString() + " SR"
                 )
                 intent.putExtra("ProData", proData)
                 context.startActivity(intent)

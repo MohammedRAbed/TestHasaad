@@ -30,8 +30,9 @@ interface APIInterface {
         @HeaderMap accept_tab : MutableMap<String,String>
     ) : Call<ForProTabs>
 
+
     //products
-    @GET("category/{id}/products?page=1&sort_by=low_to_high&price_from=160&price_to=700&title=Blackcu")
+    @GET("category/{id}/products?")
     fun productsOfCategory(
         @HeaderMap accept_pro_cat :MutableMap<String,String>,
         @Path("id") id : Int

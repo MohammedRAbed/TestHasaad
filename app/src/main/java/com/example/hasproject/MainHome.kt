@@ -116,14 +116,9 @@ class MainHome : AppCompatActivity()/* , Communicator*/ {
         var listId : List<ForProTabs.Item> = listOf()
 
         override fun getItem(p0: Int): Fragment {
-            return when (p0) {
-                0 -> FishFood.newInstance(1)
-                1 -> FishFood.newInstance(2)
-                2 -> FishFood.newInstance(3)
-                3 -> FishFood.newInstance(4)
-                else -> null!!
-            }
+            return FishFood.newInstance(listId.get(p0).id)
         }
+
         override fun getCount(): Int {
              println(listId.size)
             return listId.size
