@@ -3,7 +3,7 @@ package com.example.hasproject.passData
 import java.io.Serializable
 
 class PassProData(name:String ,title:String , price:String , offer :String) : Serializable {
-    internal var name:String
+    internal var name : String
     internal var title : String
     internal var price : String
     internal var offer : String

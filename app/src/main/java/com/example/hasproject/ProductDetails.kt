@@ -17,6 +17,8 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.example.hasproject.passData.PassProData
+import com.example.hasproject.saveData.CartClass
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_ad_to_cart_dialog.*
 import kotlinx.android.synthetic.main.activity_ad_to_cart_dialog.view.*
 import kotlinx.android.synthetic.main.activity_cart.*
@@ -28,9 +30,10 @@ class ProductDetails : AppCompatActivity() {
 
     class RelatedFoodClass()
 
+    lateinit var cartList : ArrayList<CartClass>
 
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "CommitPrefEdits")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_details)
@@ -41,6 +44,7 @@ class ProductDetails : AppCompatActivity() {
         val kgPro : TextView = findViewById(R.id.kg)
         val itemsPro : TextView = findViewById(R.id.itemss)
         val pacPro:TextView = findViewById(R.id.packagee)
+
 
         val proData : PassProData? = intent.getSerializableExtra("ProData") as? PassProData
 
@@ -87,16 +91,20 @@ class ProductDetails : AppCompatActivity() {
             finish()
         }
 
-        val sharedPreferences2 = getSharedPreferences("SP_Info", Context.MODE_PRIVATE)
+        //val sharedPreferences2 = getSharedPreferences("SP_Info", Context.MODE_PRIVATE)
 
         add_to_cart_btn.setOnClickListener {
 
             val price =  offerProD.text.toString().trim()
             val p_name = product_name.text.toString().trim()
+
+
+            /*
             val editor = sharedPreferences2.edit()
             editor.putString("NAME",p_name)
             editor.putString("PRICE",price)
             editor.apply()
+            */
 
 
             //For Dialog ..
@@ -106,16 +114,33 @@ class ProductDetails : AppCompatActivity() {
                 .setView(firstDialogView)
             var firstAlertDialog = firstBuilder.show()
 
-            val sharedPreferences = getSharedPreferences("SP_Info", Context.MODE_PRIVATE)
+            //val sharedPreferences = getSharedPreferences("SP_Info", Context.MODE_PRIVATE)
             firstDialogView.confirm_add_cart.setOnClickListener {
 
 
                 val many = firstDialogView.et_many.text.toString().trim()
                 val des = firstDialogView.et_des.text.toString().trim()
-                val editor = sharedPreferences.edit()
-                editor.putString("MANY",many)
-                editor.putString("DES",des)
+
+                cartList = ArrayList()
+                val cartClass = CartClass(p_name,many,price,des)
+                cartList.add(cartClass)
+
+                val gson = Gson()
+                val json = gson.toJson(cartList)
+
+                val sp = getSharedPreferences("SP", Context.MODE_PRIVATE)
+                val editor = sp.edit()
+                editor.putString("KEY",json)
                 editor.apply()
+
+
+
+                /*
+                val editorr = sharedPreferences.edit()
+                editorr.putString("MANY",many)
+                editorr.putString("DES",des)
+                editorr.apply()
+                */
 
                 val intentForGetCartt = Intent(this,Cart::class.java)
                 startActivity(intentForGetCartt)
