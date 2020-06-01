@@ -82,24 +82,43 @@
                     app:layout_constraintHorizontal_bias="0.5" app:layout_constraintEnd_toEndOf="parent"
                     android:layout_marginTop="14dp" app:layout_constraintTop_toBottomOf="@+id/product_name"/>
 
-            <TextView
-                    android:text="22.50 SR"
+            <LinearLayout
+                    android:id="@+id/ccc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/offer_p"
-                    android:textColor="@color/darkGreen"
-                    android:textSize="30sp"
-                    android:layout_marginTop="26dp"
-                    app:layout_constraintTop_toBottomOf="@+id/rb_details"
-                    app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintEnd_toEndOf="parent"/>
+                    android:layout_marginTop="40dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rb_details">
+
+                <TextView
+                        android:id="@+id/offer_p"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="22.50"
+                        android:textColor="@color/darkGreen"
+                        android:textSize="30sp"
+                        tools:layout_editor_absoluteX="115dp"
+                        tools:layout_editor_absoluteY="189dp" />
+
+                <TextView
+                        android:id="@+id/textView8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" SR"
+                        android:textColor="@color/darkGreen"
+                        android:textSize="30sp"
+                        app:layout_constraintStart_toEndOf="@+id/offer_p"
+                        tools:layout_editor_absoluteY="189dp" />
+
+            </LinearLayout>
             <TextView
                     android:text="3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/packagee"
                     android:layout_marginTop="22dp"
-                    app:layout_constraintTop_toBottomOf="@+id/offer_p"
+                    app:layout_constraintTop_toBottomOf="@+id/ccc"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -115,7 +134,7 @@
                     app:layout_constraintStart_toEndOf="@+id/packagee"
                     android:layout_marginStart="35dp"
                     android:layout_marginTop="22dp"
-                    app:layout_constraintTop_toBottomOf="@+id/offer_p"/>
+                    app:layout_constraintTop_toBottomOf="@+id/ccc"/>
             <TextView
                     android:textStyle="bold"
                     android:text="1"
@@ -124,7 +143,7 @@
                     android:textColor="@color/grayText"
                     app:layout_constraintEnd_toStartOf="@+id/packagee"
                     android:layout_marginEnd="35dp" android:layout_marginTop="22dp"
-                    app:layout_constraintTop_toBottomOf="@+id/offer_p"/>
+                    app:layout_constraintTop_toBottomOf="@+id/ccc"/>
             <Button
                     android:text="Add to cart"
                     android:layout_width="match_parent"
@@ -137,6 +156,7 @@
                     app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
                     android:layout_marginStart="31dp" android:layout_marginEnd="31dp"
                     app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="16dp"/>
+
 
         </android.support.constraint.ConstraintLayout>
         <TextView

@@ -35,7 +35,7 @@ class CoustumAdapterForProductsHome(val context: Context) :RecyclerView.Adapter<
             .apply(RequestOptions().centerCrop())
             .into(p0.myImage)
         //price&offers
-        p0.myPrice.text = "${home_product_list_food.get(p1).units.get(0).pivot.price} SR"
+        p0.myPrice.text = "${home_product_list_food.get(p1).units.get(0).pivot.price}"
 
 
         p0.myImage.setOnClickListener{

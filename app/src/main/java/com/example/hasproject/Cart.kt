@@ -1,5 +1,6 @@
 package com.example.hasproject
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
@@ -36,6 +37,7 @@ import kotlinx.android.synthetic.main.cart_list.*
 class Cart : AppCompatActivity() {
 
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cart)
@@ -47,28 +49,23 @@ class Cart : AppCompatActivity() {
 
         val list :List<CartClass> = gson.fromJson(json,type)
 
+        var total : Double = 0.0
+        for(i in list.indices) {
+            when(i) {
+                0-> {total= list.get(i).price.toDouble()}
+                else-> {
+                    total += list.get(i).price.toDouble()
+                }
+            }
+        }
+        total_cart.text = "$total SR"
+        check_cart.text = "Check out ($total SR)"
 
         val recyclerViewForCart: RecyclerView = findViewById(R.id.recyclerView_for_cart)
         recyclerViewForCart.layoutManager = LinearLayoutManager(this)
-/*
-        val cartFood = ArrayList<CartClass>()
-
-        val sharedPreferences = getSharedPreferences("SP_Info", Context.MODE_PRIVATE)
-
-        val many = sharedPreferences.getString("MANY","1")
-        val des =sharedPreferences.getString("DES","no extra description")
-
-        val p_name = sharedPreferences.getString("NAME","")
-        val price =sharedPreferences.getString("PRICE","")
-
-        cartFood.add(CartClass(p_name,many,price,des))
-
-*/
         val myAdapterForCart = Cart.CoustumAdapterForCart(this)
         recyclerViewForCart.adapter = myAdapterForCart
         myAdapterForCart.setCartList(list)
-
-
 
 
 
@@ -126,10 +123,10 @@ class Cart : AppCompatActivity() {
         override fun onBindViewHolder(p0: myCartHolder, position: Int) {
             val related : CartClass = cartt_list[position]
 
-            p0?.theNameOfCart.text = related.name
-            p0?.theManyOfCart.text = "${related.many}"
-            p0?.thePriceOfCart.text = related.price
-            p0?.theDescriptionOfCart.text = related.des
+            p0.theNameOfCart.text = related.name
+            p0.theManyOfCart.text = related.many
+            p0.thePriceOfCart.text = related.price + " SR"
+            p0.theDescriptionOfCart.text = related.des
 
         }
 
