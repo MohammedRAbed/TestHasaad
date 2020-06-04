@@ -67,20 +67,27 @@ class ProductDetails : AppCompatActivity() {
         itemsPro.text = proData?.title
         pacPro.text = proData?.title
 
+        var isTypeOn = false
         kgPro.setOnClickListener {
+            val type = kgPro.text.toString().trim()
             kgPro.setTextColor(Color.parseColor("#EB1D1D"))
             itemsPro.setTextColor(Color.parseColor("#898989"))
             pacPro.setTextColor(Color.parseColor("#898989"))
+            isTypeOn = true
         }
         itemsPro.setOnClickListener {
+            val type = kgPro.text.toString().trim()
             kgPro.setTextColor(Color.parseColor("#898989"))
             itemsPro.setTextColor(Color.parseColor("#EB1D1D"))
             pacPro.setTextColor(Color.parseColor("#898989"))
+            isTypeOn = true
         }
         pacPro.setOnClickListener {
+            val type = kgPro.text.toString().trim()
             kgPro.setTextColor(Color.parseColor("#898989"))
             itemsPro.setTextColor(Color.parseColor("#898989"))
             pacPro.setTextColor(Color.parseColor("#EB1D1D"))
+            isTypeOn = true
         }
 
 
@@ -96,29 +103,28 @@ class ProductDetails : AppCompatActivity() {
 
 
         add_to_cart_btn.setOnClickListener {
+            if(isTypeOn == true) {
+                var counter = 0
 
-            val counter: Int = 0
-
-            if(counter == cartList.size) {
-                addToCart()
-             }
-
-            else {
-                if (Arrays.asList(cartList.get(0).name)!!.contains(product_name.text.toString())) {
-
-                    Toast.makeText(
-                        this,
-                        "This Product is already added to the cart",
-                        Toast.LENGTH_SHORT
-                    ).show()
-
-                }
-
-                else {
+                if (counter == cartList.size) {
                     addToCart()
+                } else {
+                    if (Arrays.asList(cartList.get(0).name)!!.contains(product_name.text.toString())) {
+
+                        Toast.makeText(
+                            this,
+                            "This Product is already added to the cart",
+                            Toast.LENGTH_SHORT
+                        ).show()
+
+                    } else {
+                        addToCart()
+                    }
                 }
             }
-
+            else {
+                Toast.makeText(this, "You forgot to choose the product type" , Toast.LENGTH_SHORT).show()
+            }
         }
 
 
@@ -164,9 +170,23 @@ class ProductDetails : AppCompatActivity() {
 
     }
 
+
     fun addToCart() {
+
         val price = offer_p.text.toString().trim()
         val p_name = product_name.text.toString().trim()
+        var type: String =""
+
+        if (kg.currentTextColor == Color.parseColor("#EB1D1D")) {
+            type = kg.text.toString().trim()
+        }
+        if (itemss.currentTextColor == Color.parseColor("#EB1D1D")) {
+            type = itemss.text.toString().trim()
+        }
+        if (packagee.currentTextColor == Color.parseColor("#EB1D1D")) {
+            type = packagee.text.toString().trim()
+        }
+
 
         //For Dialog ..
 
@@ -179,12 +199,11 @@ class ProductDetails : AppCompatActivity() {
         var firstAlertDialog = firstBuilder.show()
 
         firstDialogView.confirm_add_cart.setOnClickListener {
-
-
             val many = firstDialogView.et_many.text.toString().trim()
             val des = firstDialogView.et_des.text.toString().trim()
 
-            val cartClass = CartClass(p_name, many, price, des)
+
+            val cartClass = CartClass(p_name, many, price, des, type)
             cartList.add(cartClass)
 
             val gson = Gson()
@@ -199,6 +218,8 @@ class ProductDetails : AppCompatActivity() {
             val intentForGetCartt = Intent(this, Cart::class.java)
             startActivity(intentForGetCartt)
         }
+
+
         firstDialogView.x_dismiss.setOnClickListener {
             firstAlertDialog.dismiss()
         }

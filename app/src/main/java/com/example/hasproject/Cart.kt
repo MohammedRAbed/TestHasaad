@@ -3,17 +3,20 @@ package com.example.hasproject
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.helper.ItemTouchHelper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.hasproject.saveData.CartClass
+import com.example.hasproject.saveData.cartList
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.activity_ad_to_cart_dialog.view.*
@@ -24,15 +27,6 @@ import kotlinx.android.synthetic.main.activity_order_note.view.*
 import kotlinx.android.synthetic.main.activity_product_details.*
 import kotlinx.android.synthetic.main.cart_list.*
 
-/*
- List<YourModel> arrayItems;
- String serializedObject = sharedPreferences.getString(KEY_PREFS, null);
- if (serializedObject != null) {
- Gson gson = new Gson();
- Type type = new TypeToken<List<YourModel>>(){}.getType();
- arrayItems = gson.fromJson(serializedObject, type);
- }
- */
 
 class Cart : AppCompatActivity() {
 
@@ -44,16 +38,18 @@ class Cart : AppCompatActivity() {
 
         val sp = getSharedPreferences("SP", Context.MODE_PRIVATE)
         val gson = Gson()
-        val json  = sp.getString("KEY","")
-        val type = object : TypeToken<List<CartClass>>() {}.type
+        val json = sp.getString("KEY", "")
+        val typeToken = object : TypeToken<List<CartClass>>() {}.type
 
-        val list :List<CartClass> = gson.fromJson(json,type)
+        val list: ArrayList<CartClass> = gson.fromJson(json, typeToken)
 
-        var total : Double = 0.0
-        for(i in list.indices) {
-            when(i) {
-                0-> {total= list.get(i).price.toDouble()}
-                else-> {
+        var total: Double = 0.0
+        for (i in list.indices) {
+            when (i) {
+                0 -> {
+                    total = list.get(i).price.toDouble()
+                }
+                else -> {
                     total += list.get(i).price.toDouble()
                 }
             }
@@ -68,9 +64,38 @@ class Cart : AppCompatActivity() {
         myAdapterForCart.setCartList(list)
 
 
+        //Swipe To Delete ....
+        var helper = ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT) {
+
+            override fun onMove(p0: RecyclerView, p1: RecyclerView.ViewHolder, p2: RecyclerView.ViewHolder): Boolean {
+                return false
+            }
+
+            override fun onSwiped(p0: RecyclerView.ViewHolder, p1: Int) {
+                val position = p0.adapterPosition
+                if(list.size != 1) {
+                    println("size --------> ${list.size}")
+                    total -= list[position].price.toDouble()
+                    total_cart.text = "$total SR"
+                    check_cart.text = "Check out ($total SR)"
+                }
+                else {
+                    check_cart.setBackgroundColor(Color.parseColor("#F7F7F7"))
+                    check_cart.text = "The Cart is empty"
+                    total_cart.text = "0 SR"
+                    check_cart.setTextColor(Color.parseColor("#216E5F"))
+                }
+                list.removeAt(position)
+                myAdapterForCart.notifyDataSetChanged()
+            }
+        })
+        helper.attachToRecyclerView(recyclerViewForCart)
+
+
+
 
         check_cart.setOnClickListener {
-            val mDialogView2 = LayoutInflater.from(this).inflate(R.layout.activity_order_note,null)
+            val mDialogView2 = LayoutInflater.from(this).inflate(R.layout.activity_order_note, null)
             val mBuilder2 = AlertDialog.Builder(this)
                 .setView(mDialogView2)
 
@@ -78,7 +103,7 @@ class Cart : AppCompatActivity() {
 
 
             mDialogView2.done_note.setOnClickListener {
-                val intentForGoToCheck = Intent(this , Check::class.java)
+                val intentForGoToCheck = Intent(this, Check::class.java)
                 startActivity(intentForGoToCheck)
             }
 
@@ -90,16 +115,9 @@ class Cart : AppCompatActivity() {
 
         }
 
-
-
-
-
         back_from_cart_to_home.setOnClickListener {
-           finish()
+            finish()
         }
-
-
-
 
 
     }
@@ -107,12 +125,22 @@ class Cart : AppCompatActivity() {
 
 
 
-    class CoustumAdapterForCart(var context: Context):RecyclerView.Adapter<CoustumAdapterForCart.myCartHolder>(){
 
-        var cartt_list :List<CartClass> = listOf()
 
-       override fun onCreateViewHolder(p0: ViewGroup, p1: Int): myCartHolder {
-            var z = LayoutInflater.from(p0?.context).inflate(R.layout.cart_list,p0,false)
+
+
+
+
+
+
+//Adapter.....
+    class CoustumAdapterForCart(var context: Context) :
+        RecyclerView.Adapter<CoustumAdapterForCart.myCartHolder>() {
+
+        var cartt_list: ArrayList<CartClass> = ArrayList()
+
+        override fun onCreateViewHolder(p0: ViewGroup, p1: Int): myCartHolder {
+            var z = LayoutInflater.from(p0.context).inflate(R.layout.cart_list, p0, false)
             return myCartHolder(z)
         }
 
@@ -120,46 +148,46 @@ class Cart : AppCompatActivity() {
             return cartt_list.size
         }
 
+        @SuppressLint("SetTextI18n")
         override fun onBindViewHolder(p0: myCartHolder, position: Int) {
-            val related : CartClass = cartt_list[position]
+            val related: CartClass = cartt_list[position]
 
             p0.theNameOfCart.text = related.name
             p0.theManyOfCart.text = related.many
             p0.thePriceOfCart.text = related.price + " SR"
             p0.theDescriptionOfCart.text = related.des
+            p0.theTypeOfCart.text = " " +related.type
+
 
         }
 
-        fun setCartList(list : List<CartClass>) {
+        fun setCartList(list: ArrayList<CartClass>) {
             this.cartt_list = list
             notifyDataSetChanged()
         }
 
-         inner class myCartHolder(itemView: View):RecyclerView.ViewHolder(itemView) {
-            var theImageForCart :ImageView
-            var theNameOfCart:TextView
-            var theManyOfCart :TextView
-            var thePriceOfCart :TextView
-            var theDescriptionOfCart :TextView
+        inner class myCartHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+            var theImageForCart: ImageView
+            var theNameOfCart: TextView
+            var theManyOfCart: TextView
+            var thePriceOfCart: TextView
+            var theDescriptionOfCart: TextView
+            var theTypeOfCart : TextView
 
 
             init {
                 theImageForCart = itemView.findViewById(R.id.image_cart) as ImageView
-                 theNameOfCart = itemView.findViewById(R.id.name_cart) as TextView
-                 theManyOfCart = itemView.findViewById(R.id.many_x_items_cart) as TextView
-                 thePriceOfCart = itemView.findViewById(R.id.price_cart) as TextView
+                theNameOfCart = itemView.findViewById(R.id.name_cart) as TextView
+                theManyOfCart = itemView.findViewById(R.id.many_x_items_cart) as TextView
+                thePriceOfCart = itemView.findViewById(R.id.price_cart) as TextView
                 theDescriptionOfCart = itemView.findViewById(R.id.description_cart) as TextView
-
-
-
+                theTypeOfCart = itemView.findViewById(R.id.type_cart) as TextView
 
             }
         }
 
 
     }
-
-
 
 
 }
