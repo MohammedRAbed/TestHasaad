@@ -6,6 +6,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -15,6 +16,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.example.hasproject.deleteProduct.SwipeToDelete
 import com.example.hasproject.saveData.CartClass
 import com.example.hasproject.saveData.cartList
 import com.google.gson.Gson
@@ -64,32 +66,42 @@ class Cart : AppCompatActivity() {
         myAdapterForCart.setCartList(list)
 
 
-        //Swipe To Delete ....
-        var helper = ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT) {
+        //Swipe To Delete....
+        val swipeToDeleteCallback : SwipeToDelete = object :SwipeToDelete(this) {
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position : Int = viewHolder.adapterPosition
+                val item : CartClass = myAdapterForCart.geetData()[position]
 
-            override fun onMove(p0: RecyclerView, p1: RecyclerView.ViewHolder, p2: RecyclerView.ViewHolder): Boolean {
-                return false
-            }
-
-            override fun onSwiped(p0: RecyclerView.ViewHolder, p1: Int) {
-                val position = p0.adapterPosition
-                if(list.size != 1) {
+                if (list.size != 1) {
                     println("size --------> ${list.size}")
                     total -= list[position].price.toDouble()
                     total_cart.text = "$total SR"
                     check_cart.text = "Check out ($total SR)"
-                }
-                else {
+                } else {
                     check_cart.setBackgroundColor(Color.parseColor("#F7F7F7"))
                     check_cart.text = "The Cart is empty"
                     total_cart.text = "0 SR"
                     check_cart.setTextColor(Color.parseColor("#216E5F"))
                 }
-                list.removeAt(position)
-                myAdapterForCart.notifyDataSetChanged()
+
+                myAdapterForCart.removeItem(position)
+
+
+
+                val snackbar = Snackbar.make(constaint_cart, "Product was removed from the list.", Snackbar.LENGTH_LONG)
+                snackbar.setAction("UNDO ?", object : View.OnClickListener {
+                    override fun onClick(view: View?) {
+                        myAdapterForCart.restoreItem(item, position)
+                        recyclerViewForCart.scrollToPosition(position)
+                    }
+                })
+                snackbar.setActionTextColor(Color.YELLOW)
+                snackbar.show()
             }
-        })
-        helper.attachToRecyclerView(recyclerViewForCart)
+        }
+        val itemTouchhelper = ItemTouchHelper(swipeToDeleteCallback)
+        itemTouchhelper.attachToRecyclerView(recyclerViewForCart)
+
 
 
 
@@ -127,13 +139,7 @@ class Cart : AppCompatActivity() {
 
 
 
-
-
-
-
-
-
-//Adapter.....
+    //Adapter.....
     class CoustumAdapterForCart(var context: Context) :
         RecyclerView.Adapter<CoustumAdapterForCart.myCartHolder>() {
 
@@ -156,7 +162,7 @@ class Cart : AppCompatActivity() {
             p0.theManyOfCart.text = related.many
             p0.thePriceOfCart.text = related.price + " SR"
             p0.theDescriptionOfCart.text = related.des
-            p0.theTypeOfCart.text = " " +related.type
+            p0.theTypeOfCart.text = " " + related.type
 
 
         }
@@ -166,13 +172,29 @@ class Cart : AppCompatActivity() {
             notifyDataSetChanged()
         }
 
+
+        fun removeItem(position: Int) {
+            cartt_list.removeAt(position)
+            notifyItemRemoved(position)
+        }
+
+        fun restoreItem(item: CartClass?, position: Int) {
+            cartt_list.add(position, item!!)
+            notifyItemInserted(position)
+        }
+
+        fun geetData(): ArrayList<CartClass> {
+            return cartt_list
+        }
+
+
         inner class myCartHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             var theImageForCart: ImageView
             var theNameOfCart: TextView
             var theManyOfCart: TextView
             var thePriceOfCart: TextView
             var theDescriptionOfCart: TextView
-            var theTypeOfCart : TextView
+            var theTypeOfCart: TextView
 
 
             init {
