@@ -224,8 +224,7 @@ class ProductDetails : AppCompatActivity() {
             firstAlertDialog.dismiss()
         }
 
-        firstAlertDialog.getWindow()
-            .setBackgroundDrawableResource(android.R.color.transparent)
+        firstAlertDialog.getWindow()!!.setBackgroundDrawableResource(android.R.color.transparent)
 
     }
 
